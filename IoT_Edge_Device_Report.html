@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT/Edge Device Report | brut3bulk</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #e6e6e6;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #e64545;
+    }
+    code {
+      background: #1a1a1a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #ffb86c;
+    }
+    hr {
+      border: 1px solid #222;
+      margin: 2rem 0;
+    }
+    ul {
+      margin-left: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>IoT/Edge Device Security Report (Anonymized)</h1>
+
+  <h2>Summary</h2>
+  <p>A grey-box security assessment was conducted on an industrial IoT edge device used to collect and transmit sensor data. The device included network services, embedded credentials, and API endpoints. Multiple real-world vulnerabilities were identified.</p>
+
+  <hr>
+  <h2>🔍 Findings</h2>
+
+  <h3>1. ARP Spoofing / Network Poisoning</h3>
+  <p><strong>Description:</strong> The device accepted ARP replies without verification, enabling ARP poisoning and MitM attacks.</p>
+  <p><strong>Impact:</strong></p>
+  <ul>
+    <li>Session hijacking</li>
+    <li>Interception of credentials and control traffic</li>
+  </ul>
+  <p><strong>Recommendation:</strong> Harden network stack, use ARP inspection and encrypted channels.</p>
+
+  <h3>2. DDoS Vulnerability Across Network Layers</h3>
+  <p><strong>Description:</strong> The device was susceptible to multi-layered DDoS attacks:</p>
+  <ul>
+    <li><strong>Layer 3:</strong> Volumetric flooding exhausted network interfaces</li>
+    <li><strong>Layer 4:</strong> SYN floods consumed socket states</li>
+    <li><strong>Layer 7:</strong> GET/POST floods impacted API performance</li>
+    <li><strong>TLS Exhaustion:</strong> Repeated SSL handshakes drained CPU resources</li>
+  </ul>
+  <p><strong>Recommendation:</strong> Implement rate-limiting, SYN cookies, TLS hardening, and request validation.</p>
+
+  <h3>3. Weak Password Hashing (MD5)</h3>
+  <p><strong>Description:</strong> User credentials were hashed using MD5, an insecure and outdated algorithm.</p>
+  <p><strong>Impact:</strong></p>
+  <ul>
+    <li>Susceptibility to brute-force and collision attacks</li>
+    <li>Credential recovery and account takeover</li>
+  </ul>
+  <p><strong>Recommendation:</strong> Use bcrypt or SHA-256 with salt and pepper. Enforce secure password policies.</p>
+
+  <hr>
+  <h2>Engagement Details</h2>
+  <ul>
+    <li><strong>Mode:</strong> Grey-Box Testing</li>
+    <li><strong>Scope:</strong> Industrial IoT edge gateway (live deployment)</li>
+    <li><strong>Environment:</strong> Connected sensors, real-time data processing</li>
+  </ul>
+
+  <p><em>Note: This report is anonymized. All findings reflect real vulnerabilities identified in a secured ethical context. No device, vendor, or client identities are disclosed.</em></p>
+</body>
+</html>

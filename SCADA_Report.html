@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCADA Pentest Report | brut3bulk</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #e6e6e6;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #e64545;
+    }
+    code {
+      background: #1a1a1a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #ffb86c;
+    }
+    hr {
+      border: 1px solid #222;
+      margin: 2rem 0;
+    }
+    ul {
+      margin-left: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>SCADA System Pentest Report (Anonymized)</h1>
+
+  <h2>Overview</h2>
+  <p>A white-box security assessment was conducted on an industrial SCADA (Supervisory Control and Data Acquisition) environment. The system included PLC-controlled field devices and a web-based HMI for remote supervision. The testing revealed multiple real-world vulnerabilities with potentially critical impact on operational integrity.</p>
+
+  <hr>
+  <h2>🔍 Findings</h2>
+
+  <h3>1. Cross-Site Scripting (XSS)</h3>
+  <p><strong>Description:</strong> The SCADA HMI interface accepted unescaped input, making it vulnerable to both stored and reflected XSS.</p>
+  <p><strong>Impact:</strong></p>
+  <ul>
+    <li>Execution of arbitrary JavaScript</li>
+    <li>Session hijacking</li>
+    <li>Token theft and UI manipulation</li>
+  </ul>
+  <p><strong>Recommendation:</strong> Implement strict input validation, sanitize outputs before rendering, and use Content Security Policy (CSP).</p>
+
+  <h3>2. Privilege Escalation</h3>
+  <p><strong>Description:</strong> Access control flaws allowed lateral and vertical privilege escalation, permitting unauthorized users to access sensitive functions.</p>
+  <p><strong>Impact:</strong></p>
+  <ul>
+    <li>Unauthorized access to admin functionality</li>
+    <li>System configuration changes</li>
+    <li>Process manipulation</li>
+  </ul>
+  <p><strong>Recommendation:</strong> Enforce strict role-based access controls and segregate admin features from user context.</p>
+
+  <h3>3. Insecure JWT Configuration</h3>
+  <p><strong>Description:</strong> JWTs issued post-authentication had excessive expiration times, increasing the risk of token misuse.</p>
+  <p><strong>Impact:</strong></p>
+  <ul>
+    <li>Persistent access via stolen tokens</li>
+    <li>Difficult token revocation</li>
+  </ul>
+  <p><strong>Recommendation:</strong> Reduce token lifespan, use refresh tokens, and implement rotation & revocation mechanisms.</p>
+
+  <hr>
+  <h2>Engagement Details</h2>
+  <ul>
+    <li><strong>Mode:</strong> White-Box Testing</li>
+    <li><strong>Scope:</strong> Web-based SCADA HMI + auth components</li>
+    <li><strong>Environment:</strong> Industrial control with PLC integration</li>
+  </ul>
+
+  <p><em>Note: This report is anonymized. No vendor, client, or facility data is included. All findings reflect real-world conditions under ethical testing constraints.</em></p>
+</body>
+</html>
