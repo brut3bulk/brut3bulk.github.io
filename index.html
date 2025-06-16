@@ -27,9 +27,13 @@
   text-align: center;
   margin-bottom: 0.5rem;
   letter-spacing: 1px;
-  text-shadow: 0 0 4px #840202, 0 0 12px rgba(255,255,255,0.05);
   font-family: 'JetBrains Mono', monospace;
-  }
+  animation: glitch 1.2s ease-in-out 5;
+  text-shadow:
+    1px 0 #ff0000,
+   -1px 0 #6c6b6b,
+    0 0 6px #840202;
+}
     h2 {
       font-size: 1.2rem;
       color: #840202;
@@ -58,11 +62,11 @@
       margin-bottom: 2rem;
     }
     @keyframes glitch {
-      0% { text-shadow: 1px 0 red, -1px 0 cyan; }
-      20% { text-shadow: -1px 1px red, 1px -1px cyan; }
-      40% { text-shadow: 2px 0 red, -2px 0 cyan; }
-      60% { text-shadow: -2px 2px red, 2px -2px cyan; }
-      80% { text-shadow: 1px 0 red, -1px 0 cyan; }
+      0% { text-shadow: 1px 0 red, -1px 0 #6c6b6b; }
+      20% { text-shadow: -1px 1px red, 1px -1px #6c6b6b; }
+      40% { text-shadow: 2px 0 red, -2px 0 #6c6b6b; }
+      60% { text-shadow: -2px 2px red, 2px -2px #6c6b6b; }
+      80% { text-shadow: 1px 0 red, -1px 0 #6c6b6b; }
       100% { text-shadow: none; }
     }
     a {
